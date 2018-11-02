@@ -7,14 +7,15 @@ class Helper {
         const keys = {
             client_id: "VJDFLA50R3APBBVQMBZQ4EZKIG5LERLAYZF1EC5CYHK1AZ2P",
             client_secret: "RSLIAHUYURS32RIPTKRR30QSU4F5SYKAYUX042PKYJPSB4U2",
-            v: "20181102"
+            v: "20181102" // date created
         };
+        // keys into strings
         return Object.keys(keys)
         .map(key => `${key}=${keys[key]}`)
         .join("&");
     }
-    static urlBuider(urlPrams) {
-        tf (!urlPrans) {
+    static urlBuilder(urlPrams) {
+        if (!urlPrams) {
             return "";
         }
         return Object.keys(urlPrams)
@@ -26,7 +27,7 @@ class Helper {
             Accept: "application/json"
         };
     }
-    static simpleFetch(endPoint, method, urlPrams) {
+    static async simpleFetch(endPoint, method, urlPrams) {
         let requestData = {
             method,
             headers: Helper.headers()
@@ -53,3 +54,5 @@ export default class SquareAPI {
         return Helper.simpleFetch(`/venues/${VENUE_ID}/photos`, "GET");
     }
 }
+
+//Code referenced from Forrest Walker's YouTube Tutorial - https://www.youtube.com/watch?v=Dj5hzKBxCBI&list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP&index=3

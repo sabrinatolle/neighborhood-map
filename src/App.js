@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Map from "./component/map.js";
-import SquareAPI from "./API/";
+import SquareAPI from "./api/";
 
 class App extends Component {
   componentDidMount() {
