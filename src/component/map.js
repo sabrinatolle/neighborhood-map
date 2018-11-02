@@ -8,13 +8,14 @@ import {
 } from "react-google-maps";
 // mounts google maps 
 const MyMapComponent = withScriptjs(
-    withGoogleMap(props => (
+    withGoogleMap((props) => 
         <GoogleMap 
         defaultZoom={8}
         //getting zoom set to 12
         zoom={props.zoom}
-        defaultCenter={{lat: -34.397, lng: 150.644}}
-        center={props.center} 
+        
+        center={props.center}
+        defaultCenter={{ lat: 41.881832, lng: -87.623177 }}
         >
         {/* shows the markers of results on map*/}
          {props.markers && 
@@ -24,8 +25,8 @@ const MyMapComponent = withScriptjs(
         <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng}} />
          ))}
         </GoogleMap>
+        
     ))
-);
 
 
 export default class Map extends Component {
@@ -37,6 +38,7 @@ export default class Map extends Component {
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `400px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
+        
       />);
     
     }

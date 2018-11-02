@@ -6,14 +6,16 @@ import SquareAPI from "./api/";
 
 class App extends Component {
   //adding markers
-  constructor(props) {
-    super(props);
-    this.state ={
+  constructor() {
+    super();
+    this.state = {
       venues: [],
       markers: [],
       center: [],
       zoom: 12
-    };
+      
+    }; 
+    
   }
   componentDidMount() {
     SquareAPI.search({
@@ -24,17 +26,19 @@ class App extends Component {
       // deconstruct response
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
-      const { markers} = venues.map(venue => {
+      const  markers = venues.map(venue => {
         return {
-          lat:venue.location.lat,
-          lng:venue.location.lng,
+          lat: venue.location.lat,
+          lng: venue.location.lng,
           isOpen:false,
           isVisible:true,
           id: venue.id
         }
+        
       })
       this.setState({venues, center, markers});
       console.log(results)
+      
     });
   }
   render() {
