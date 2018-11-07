@@ -12,7 +12,10 @@ class App extends Component {
       venues: [],
       markers: [],
       center: [],
-      zoom: 12
+      zoom: 12,
+      updateSuperState: obj => {
+        this.setState(obj);
+      }
       
     }; 
     
@@ -22,6 +25,7 @@ class App extends Component {
     const markers = this.state.markers.map(marker => {
       //allows only one marker to be open at a time
       marker.isOpen = false;
+      //marker.clickOnMarker = false;
       return marker;
     });
     this.setState({markers: Object.assign(this.state.markers, markers)});
@@ -30,16 +34,35 @@ class App extends Component {
   handleMarkerClick = marker => {
     this.closeAllMarkers();
     marker.isOpen = true;
-    this.setState({markers: Object.assign(this.state.markers,marker)})
-    SquareAPI.getVenueDetails(marker.id).then(res => console.log(res));
+    this.setState({markers: Object.assign(this.state.markers,marker)});
+    
+    const venue = this.state.venues.find(venue => venue.id === marker.id);
+   //gets info from FourSquare about each venue for infoWindow
+    SquareAPI.getVenueDetails(marker.id)
+    .then(res => {
+      const newVenue = Object.assign(venue, res.response.venue);
+      this.setState({venues: Object.assign(this.state.venues, newVenue)});
+      
+    })
+    .catch(error => {
+      this.setState({error})
+      console.log(this.state.error)
+    })
   };
-  
+
+ handleListItemClick = venue => {
+   const marker = this.state.markers.find(marker => marker.id === venue.id);
+   this.handleMarkerClick(marker);
+  };
+
   componentDidMount() {
     SquareAPI.search({
       near: "Columbia, SC",
-      query: "Mexican",
-      limit: 20
-    }).then(results => {
+      query: "Chinese",
+      limit: 10
+    })
+    
+    .then(results => {
       // deconstruct response
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
@@ -47,23 +70,29 @@ class App extends Component {
         return {
           lat: venue.location.lat,
           lng: venue.location.lng,
+          title: venue.name,
           isOpen:false,
           isVisible:true,
-          id: venue.id
-        }
+          id: venue.id,
+          name:venue.name,
+          address: venue.location.address
+        };
         
-      })
+      });
       this.setState({venues, center, markers});
       console.log(results)
       
     });
   }
+
+    
   render() {
     return (
       <div className="App">
-        <Map {...this.state}
-        handleMarkerClick={this.handleMarkerClick}/>
-        </div>
+         <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
+          </div>
+        
+      
     );
   }
 }
