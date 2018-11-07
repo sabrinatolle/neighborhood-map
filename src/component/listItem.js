@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export default class listItem extends Component {
+export default class ListItem extends Component {
     render(){
         return(<li className="listItem">
         Hello World!
