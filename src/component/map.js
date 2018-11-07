@@ -24,9 +24,12 @@ const MyMapComponent = withScriptjs(
          props.markers
          .filter(marker => marker.isVisible)
          .map((marker,idx)=>(
-        <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng}}>
+        <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng}} onclick={() => props.handleMarkerClick(marker)}>
+            {marker.isOpen && (
             <InfoWindow>
+                <p>Hello</p>
             </InfoWindow>
+            )}
             </Marker>
 
          ))}
