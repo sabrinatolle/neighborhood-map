@@ -18,6 +18,14 @@ class App extends Component {
     
   }
 
+  closeAllMarkers = () => {
+    const markers = this.state.markers(marker => {
+      marker.isOpen = false;
+      return marker;
+    });
+    this.setState({markers: Object.assign(this.state.markers, markers)});
+  };
+
   handleMarkerClick = (marker) => {
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers,marker)})
