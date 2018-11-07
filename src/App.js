@@ -31,11 +31,13 @@ class App extends Component {
     this.closeAllMarkers();
     marker.isOpen = true;
     this.setState({markers: Object.assign(this.state.markers,marker)})
-  }
+    SquareAPI.getVenueDetails(marker.id).then(res => console.log(res));
+  };
+  
   componentDidMount() {
     SquareAPI.search({
       near: "Columbia, SC",
-      query: "Thai",
+      query: "Mexican",
       limit: 20
     }).then(results => {
       // deconstruct response
