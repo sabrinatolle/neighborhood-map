@@ -1,5 +1,5 @@
 .App {
-  background: #b84ee9;
+  background:rgb(177, 230, 247);
   display: flex;
   flex-flow: row nowrap;    
   text-align: center;
@@ -16,6 +16,19 @@
   width: 100%;
   height: 2rem;
   font-size: 1rem;
+}
+
+.venueList {
+  padding: 1rem;
+}
+
+.listItem {
+  list-style: none;
+  font-size: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  
 }
 
 .App-logo {
