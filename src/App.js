@@ -19,9 +19,9 @@ class App extends Component {
   }
   componentDidMount() {
     SquareAPI.search({
-      near: "Columbia,SC",
-      query: "tacos",
-      limit: 10
+      near: "Columbia, SC",
+      query: "Thai",
+      limit: 20
     }).then(results => {
       // deconstruct response
       const { venues } = results.response;

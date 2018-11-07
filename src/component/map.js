@@ -4,7 +4,9 @@ import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
-    Marker
+    Marker,
+    InfoWindow
+
 } from "react-google-maps";
 // mounts google maps 
 const MyMapComponent = withScriptjs(
@@ -22,7 +24,11 @@ const MyMapComponent = withScriptjs(
          props.markers
          .filter(marker => marker.isVisible)
          .map((marker,idx)=>(
-        <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng}} />
+        <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng}}>
+            <InfoWindow>
+            </InfoWindow>
+            </Marker>
+
          ))}
         </GoogleMap>
         
