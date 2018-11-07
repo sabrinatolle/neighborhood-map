@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from "./component/map.js";
 import SquareAPI from "./api/";
+import SideBar from "./component/SideBar";
 
 class App extends Component {
   //adding markers
@@ -89,6 +90,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+       <SideBar/>
          <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
           </div>
         
