@@ -6,8 +6,8 @@
   height: 100vh;
   width: 100vw;
   
-  
 }
+
 .sideBar {
   width : 25%;
   
@@ -25,9 +25,15 @@
 .listItem {
   list-style: none;
   font-size: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   margin-top: 1rem;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor:pointer;
+  background: #5757fe;
+  color: white;
+  display: flex;
+  align-items: center;
+  
   
 }
 
