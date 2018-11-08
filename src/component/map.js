@@ -25,8 +25,8 @@ const MyMapComponent = withScriptjs(
          {props.markers && 
          props.markers
          .filter(marker => marker.isVisible)
-         .map((marker,idx, arr)=> {
-             const venueInfo = props.venues.find(venue => (venue.id===marker.id))
+         .map((marker,idx, arr) => {
+             const venueInfo = props.venues.find(venue => (venue.id === marker.id))
         return (
              <Marker 
         key={idx} 
@@ -38,25 +38,29 @@ const MyMapComponent = withScriptjs(
             {marker.isOpen && 
             venueInfo.bestPhoto && (
            //grabs photo and venue name 
-        <InfoWindow>
-            <React.Fragment> 
-                    <img 
-                    src={`${venueInfo.bestPhoto.prefix}200x200${
-                        venueInfo.bestPhoto.suffix
-                        }`}
-                        alt={`${venueInfo.name}`}
-                        />
-                
-            </React.Fragment>
-        </InfoWindow>
-            )}
-            </Marker>
-
-        );
-                    })}
-        </GoogleMap>
-        
-    ))
+           <InfoWindow>
+           <React.Fragment>
+           <div className="info-window">
+           <h4>{venueInfo.name}</h4>
+           <p>{venueInfo.location.formattedAddress[0]}</p>
+           <p>{venueInfo.location.formattedAddress[1]}</p>
+           <img src={`${venueInfo.bestPhoto.prefix}200x200${venueInfo.bestPhoto.suffix}`}
+               alt={`${venueInfo.name}`} />
+           <br></br>
+          <a href={`${venueInfo.contact.formattedPhone}`} className="phone">Call: {venueInfo.contact.formattedPhone}</a>
+           <br></br>
+           <a href={`${venueInfo.url}`} className="website">Website: {venueInfo.Url}</a>
+           <br></br>
+           <a href={`${venueInfo.url}`} className="fourSquare">FourSquare Info: {venueInfo.shortUrl}</a>
+           </div>
+           </React.Fragment>
+       </InfoWindow>
+       )}
+   </Marker>
+   )
+})}
+</GoogleMap>
+))
     
 
 

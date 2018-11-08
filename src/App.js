@@ -58,13 +58,14 @@ class App extends Component {
 
   componentDidMount() {
     SquareAPI.search({
-      near: "Columbia, SC",
+      near: "Columbia,SC",
       query: "Chinese",
       limit: 10
     })
     
     .then(results => {
       // deconstruct response
+      console.log(results);
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
       const  markers = venues.map(venue => {
@@ -75,14 +76,12 @@ class App extends Component {
           isOpen:false,
           isVisible:true,
           id: venue.id,
-          name:venue.name,
+          name: venue.name,
           address: venue.location.address
         };
-        
       });
+
       this.setState({venues, center, markers});
-      console.log(results)
-      
     });
   }
 
@@ -90,11 +89,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <SideBar {...this.state} handleListItemClick={this.handleListItemClick} />
-         <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
-          </div>
-        
-      
+        <SideBar {...this.state} handleListItemClick={this.handleListItemClick} />
+        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
+      </div>
     );
   }
 }

@@ -32,13 +32,13 @@ class Helper {
             method,
             headers: Helper.headers()
         };
+        console.log(`${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(urlPrams)}`);
         return fetch (
             `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
                 urlPrams
             )}`,
             requestData
-        ).then(res => res.json());
-
+        ).then(res => res.json()); 
     }
 
 } 
