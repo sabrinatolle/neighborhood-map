@@ -1,4 +1,4 @@
-# Neighborhood Map -- Entertainment in the Columbia, S.C. Area
+# Neighborhood Map -- Chinese Food in the Columbia, S.C. Area
 
 
 ## Table of Contents
@@ -15,7 +15,7 @@
 ## Description
 This is a project for [Udacity's Front End Nanodegree Program](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001)
 
-This map will find the nearest entertainment points around the Columbia, S.C. area.
+This map will find the nearest Chinese Food around the Columbia, S.C. area.
 
 The purpose of the project is to combine all previous lessons learned into one complex project.
 
