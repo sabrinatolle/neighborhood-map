@@ -26,10 +26,11 @@ class App extends Component {
     const markers = this.state.markers.map(marker => {
       //allows only one marker to be open at a time
       marker.isOpen = false;
-      //marker.clickOnMarker = false;
+      marker.clickOnMarker = false;
       return marker;
     });
-    this.setState({markers: Object.assign(this.state.markers, markers)});
+    // resets state for markers
+    this.setState({markers: Object.assign(markers, markers)});
   };
 
   handleMarkerClick = marker => {
@@ -48,7 +49,7 @@ class App extends Component {
     .catch(error => {
       this.setState({error})
       console.log(this.state.error)
-    })
+    });
   };
 
  handleListItemClick = venue => {
@@ -59,13 +60,13 @@ class App extends Component {
   componentDidMount() {
     SquareAPI.search({
       near: "Columbia,SC",
-      query: "Chinese",
+      query: "Entertainment",
       limit: 10
     })
     
     .then(results => {
       // deconstruct response
-      console.log(results);
+      //console.log(results)
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
       const  markers = venues.map(venue => {
@@ -82,7 +83,7 @@ class App extends Component {
       });
 
       this.setState({venues, center, markers});
-    });
+    })
   }
 
     
